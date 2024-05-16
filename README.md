@@ -1,81 +1,41 @@
-# Turborepo starter
+## Why monorepo?
 
-This is an official starter Turborepo.
+Since this is a project to create microservices with domain event communication, and I am the only developer working on the back-end and front-end, it doesn't make sense to work with multiple repositories. Using Turborepo will significantly improve my productivity in this project!
 
-## Using this example
 
-Run the following command:
+##  What's my goal with this project?
 
-```sh
-npx create-turbo@latest
-```
+To learn more about properly implementing microservices in a real-case scenario.
 
-## What's inside?
+##  Project overview
 
-This Turborepo includes the following packages/apps:
+TravelBookingHub is designed to simplify travel planning by unifying various services into a seamless platform. Here’s a breakdown of the system components and their interactions:
 
-### Apps and Packages
+- API Gateway:
+  - Acts as the central entry point for all client requests.
+  - Handles user authentication and authorization using JWT.
+  - Routes requests to the appropriate microservices.
+- User Service:
+  - Manages user registration, authentication, and profile data.
+  - Implements JWT for secure access control.
+- Flight Service:
+  - Manages flight search, booking, and reservation confirmations.
+  - Publishes flight reservation events to the event bus.
+- Hotel Service:
+  - Handles hotel search, availability checks, and bookings.
+  - Publishes hotel reservation events to the event bus.
+- Car Rental Service:
+  - Manages car rental search, bookings, and confirmations.
+  - Publishes car rental reservation events to the event bus.
+- Event Bus:
+  - Utilizes RabbitMQ for inter-service communication.
+  - Ensures real-time updates and data consistency across services.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+##  Tech Stack
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- TypeScript, always o/
+- Next.js for the user interface
+- Node.js proxy for the API Gateway solution
+- Node.js with Fastify and Zod for the back-end microservices
+- Postgres to persist data on each microservice
+- RabbitMQ for the event bus solution
