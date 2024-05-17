@@ -15,6 +15,7 @@
     "node": ">=18"
   },
   "workspaces": [
+    "api-gateway/*",
     "services/*",
     "packages/*"
   ]

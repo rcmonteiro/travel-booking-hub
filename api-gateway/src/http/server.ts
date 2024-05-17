@@ -1,6 +1,6 @@
-import { env } from 'env';
-import fastify from 'fastify';
-const proxy = require('@fastify/http-proxy');
+import proxy from '@fastify/http-proxy'
+import { env } from 'env'
+import fastify from 'fastify'
 
 const app = fastify()
 
@@ -8,7 +8,7 @@ app.register(proxy, {
   upstream: `${env.USER_SERVICE_URL}:${env.USER_SERVICE_PORT}`,
   prefix: '/user',
   rewritePrefix: '/',
-  preValidation: async (request, reply) => {
+  preValidation: async () => {
     console.log('')
     console.log('Received request for /user/*')
     console.log(`Sending to "${env.USER_SERVICE_URL}:${env.USER_SERVICE_PORT}"`)

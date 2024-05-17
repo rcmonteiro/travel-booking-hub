@@ -32,6 +32,7 @@
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.13.0",
     "env": "workspace:*",
+    "message-broker": "workspace:*",
     "bcryptjs": "^2.4.3",
     "dotenv-cli": "^7.4.1",
     "fastify": "^4.26.2",

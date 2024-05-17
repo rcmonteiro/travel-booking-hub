@@ -4,6 +4,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 import { z } from 'zod';
 
 import { db } from '@/lib/prisma';
+import { connectToRabbitMQ, sendMessageMQ } from 'message-broker';
 
 import { BadRequestError } from './_errors/bad-request-error';
 
@@ -67,6 +68,10 @@ export const authenticate = async (app: FastifyInstance) => {
 
       console.log('')
       console.log('User authenticated!')
+
+      const queueName = 'user-service.events'
+      const channel = await connectToRabbitMQ(queueName)
+      await sendMessageMQ(channel,queueName,'user authenticated!')
       
       return reply.status(200).send({
         token,

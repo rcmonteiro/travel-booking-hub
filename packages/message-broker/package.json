@@ -1,0 +1,24 @@
+{
+  "name": "message-broker",
+  "version": "0.0.1",
+  "private": true,
+  "prettier": "prettier",
+  "eslintConfig": {
+    "extends": [
+      "eslint-config/react"
+    ]
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.12.8",
+    "eslint-config": "workspace:*",
+    "prettier": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.4",
+    "env": "workspace:*"
+  }
+}

@@ -9,6 +9,7 @@ export const env = createEnv({
     FLIGHT_SERVICE_PORT: z.coerce.number().default(4003),
 
     API_GATEWAY_URL: z.string().url(),
+    MQ_URL: z.string().url(),
     USER_SERVICE_URL: z.string().url(),
     HOTEL_SERVICE_URL: z.string().url(),
     FLIGHT_SERVICE_URL: z.string().url(),
@@ -27,6 +28,7 @@ export const env = createEnv({
     HOTEL_SERVICE_PORT: process.env.HOTEL_SERVICE_PORT,
     FLIGHT_SERVICE_PORT: process.env.FLIGHT_SERVICE_PORT,
     API_GATEWAY_URL: process.env.API_GATEWAY_URL,
+    MQ_URL: process.env.MQ_URL,
     USER_SERVICE_URL: process.env.USER_SERVICE_URL,
     HOTEL_SERVICE_URL: process.env.HOTEL_SERVICE_URL,
     FLIGHT_SERVICE_URL: process.env.FLIGHT_SERVICE_URL,
