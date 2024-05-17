@@ -1,0 +1,84 @@
+services:
+  pg-user-service:
+    container_name: pg-user-service
+    image: bitnami/postgresql:latest
+    restart: always
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=tbh-user-service
+    volumes:
+      - db-user:/data/postgres
+    networks:
+      - tbh-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pg-hotel-service:
+    container_name: pg-hotel-service
+    image: bitnami/postgresql:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=tbh-hotel-service
+    volumes:
+      - db-hotel:/data/postgres
+    networks:
+      - tbh-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pg-flight-service:
+    container_name: pg-flight-service
+    image: bitnami/postgresql:latest
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=tbh-flight-service
+    volumes:
+      - db-flight:/data/postgres
+    networks:
+      - tbh-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  tbh-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: tbh-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - tbh-network
+
+networks:
+  tbh-network:
+    driver: bridge
+
+volumes:
+  db-user:
+  db-flight:
+  db-hotel:
+  rabbitmq_data:

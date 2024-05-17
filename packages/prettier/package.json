@@ -1,5 +1,5 @@
 {
-  "name": "@travel-booking-hub/prettier",
+  "name": "prettier",
   "version": "0.0.1",
   "main": "index.mjs",
   "private": true,

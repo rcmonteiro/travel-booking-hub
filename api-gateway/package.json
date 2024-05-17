@@ -1,0 +1,32 @@
+{
+  "name": "api-gateway",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/http/server.ts",
+  "scripts": {
+    "start:dev": "pnpm env:load tsx watch src/http/server.ts",
+    "start:prod": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "env:load": "dotenv -e ../.env --"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.8",
+    "eslint-config": "workspace:*",
+    "prettier": "workspace:*",
+    "tsconfig": "workspace:*",
+    "tsup": "^8.0.2",
+    "tsx": "^4.9.0"
+  },
+  "dependencies": {
+    "@fastify/http-proxy": "^9.5.0",
+    "dotenv-cli": "^7.4.1",
+    "env": "workspace:*",
+    "fastify": "^4.27.0"
+  },
+  "prettier": "prettier",
+  "eslintConfig": {
+    "extends": [
+      "eslint-config/node"
+    ]
+  }
+}

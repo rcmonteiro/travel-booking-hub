@@ -1,0 +1,50 @@
+{
+  "name": "user-service",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/http/server.ts",
+  "scripts": {
+    "start:dev": "pnpm env:load tsx watch src/http/server.ts",
+    "start:prod": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "db:migrate": "pnpm env:load prisma migrate dev",
+    "db:studio": "pnpm env:load prisma studio",
+    "db:seed": "pnpm env:load prisma db seed",
+    "env:load": "dotenv -e ../../.env --"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "eslint-config": "workspace:*",
+    "prettier": "workspace:*",
+    "tsconfig": "workspace:*",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.12.8",
+    "tsup": "^8.0.2",
+    "tsx": "^4.9.0"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/jwt": "^8.0.1",
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
+    "@prisma/client": "5.13.0",
+    "env": "workspace:*",
+    "bcryptjs": "^2.4.3",
+    "dotenv-cli": "^7.4.1",
+    "fastify": "^4.26.2",
+    "fastify-plugin": "^4.5.1",
+    "fastify-type-provider-zod": "^1.1.9",
+    "prisma": "^5.14.0",
+    "zod": "^3.23.8"
+  },
+  "prettier": "prettier",
+  "eslintConfig": {
+    "extends": [
+      "eslint-config/node"
+    ]
+  },
+  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
+}
