@@ -13,7 +13,7 @@ const sampleUserInput = {
 let usersRepository: InMemoryUsersRepository
 let sut: RegisterUseCase
 
-describe('Register Use Case', () => {
+describe('Register Use Case (unit tests)', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
     sut = new RegisterUseCase(usersRepository)
@@ -24,11 +24,11 @@ describe('Register Use Case', () => {
     expect(user.id).toEqual(expect.any(Id))
   })
 
-  // it('should hash use password upon registration', async () => {
-  //   const { user } = await sut.execute(sampleUserInput)
-  //   const isPasswordHashed = await compare('123456', user.passwordHash)
-  //   expect(isPasswordHashed).toBe(true)
-  // })
+  it('should hash the password upon registration', async () => {
+    const { user } = await sut.execute(sampleUserInput)
+    const isPasswordHashed = await user.passwordHash?.compare('123456')
+    expect(isPasswordHashed).toBe(true)
+  })
 
   it('should not be able to register with same email twice', async () => {
     await sut.execute(sampleUserInput)

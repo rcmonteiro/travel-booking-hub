@@ -33,6 +33,6 @@ export class User extends Entity<IUser> {
   }
 
   public get passwordHash() {
-    return this.props.passwordHash?.value
+    return this.props.passwordHash
   }
 }
