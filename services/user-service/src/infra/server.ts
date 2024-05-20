@@ -12,8 +12,8 @@ import {
 } from 'fastify-type-provider-zod'
 
 import { authenticate } from './controllers/authenticate'
-import { createAccount } from './controllers/create-account'
-import { getProfile } from './controllers/get-profile'
+import { getProfileController } from './controllers/get-profile-controller'
+import { registerController } from './controllers/register-controller'
 import { updateAccount } from './controllers/update-account'
 import { errorHandler } from './error-handler'
 
@@ -55,10 +55,10 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors)
 
-app.register(createAccount)
+app.register(registerController)
 app.register(updateAccount)
 app.register(authenticate)
-app.register(getProfile)
+app.register(getProfileController)
 
 app.listen({ port: env.USER_SERVICE_PORT }).then(() => {
   console.log('')

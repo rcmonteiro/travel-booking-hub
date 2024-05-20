@@ -2,9 +2,9 @@
   "name": "user-service",
   "version": "0.0.1",
   "private": true,
-  "main": "src/http/server.ts",
+  "main": "src/infra/server.ts",
   "scripts": {
-    "start:dev": "pnpm env:load tsx watch src/http/server.ts",
+    "start:dev": "pnpm env:load tsx watch src/infra/server.ts",
     "start:prod": "node build/server.js",
     "build": "tsup src --out-dir build",
     "db:migrate": "pnpm env:load prisma migrate dev",

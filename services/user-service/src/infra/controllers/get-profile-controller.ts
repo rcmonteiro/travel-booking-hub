@@ -2,12 +2,12 @@ import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
-import { auth } from '@/http/middleware/auth'
-import { db } from '@/lib/prisma'
+import { auth } from '@/infra/middleware/auth'
 
-import { BadRequestError } from './_errors/bad-request-error'
+import { makeGetProfileUseCase } from '@/use-cases/factories/make-get-profile-use-case'
+import { UserPresenter } from '../presenters/user-presenter'
 
-export const getProfile = async (app: FastifyInstance) => {
+export const getProfileController = async (app: FastifyInstance) => {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
@@ -31,27 +31,15 @@ export const getProfile = async (app: FastifyInstance) => {
       },
       async (request, reply) => {
         const userId = await request.getCurrentUserId()
-
-        const user = await db.user.findUnique({
-          where: {
-            id: userId,
-          },
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        })
-
-        if (!user) {
-          throw new BadRequestError('User not found')
-        }
+        
+        const getProfileUseCase = makeGetProfileUseCase()
+        const { user } = await getProfileUseCase.execute({ userId })
 
         console.log('')
         console.log('Valid user, sending his profile')
 
         return reply.status(200).send({
-          user,
+          user: UserPresenter.toHTTP(user),
         })
       },
     )

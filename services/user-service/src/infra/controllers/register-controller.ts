@@ -1,15 +1,13 @@
-import { hash } from 'bcryptjs'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
-import { db } from '@/lib/prisma'
 
+import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-case'
 import { connectToRabbitMQ, sendMessageMQ } from 'message-broker'
 import type { UserEvent } from 'message-broker/src/events/user-event'
-import { BadRequestError } from './_errors/bad-request-error'
 
-export const createAccount = async (app: FastifyInstance) => {
+export const registerController = async (app: FastifyInstance) => {
   app.withTypeProvider<ZodTypeProvider>().post(
     '/',
     {
@@ -26,30 +24,15 @@ export const createAccount = async (app: FastifyInstance) => {
     async (request, reply) => {
       const { name, email, password } = request.body
 
-      const useWithSameEmailExists = await db.user.findUnique({
-        where: { email },
-      })
-
-      if (useWithSameEmailExists) {
-        throw new BadRequestError('User already exists')
-      }
-
-      const hashedPassword = await hash(password, 6)
-
-      const user = await db.user.create({
-        data: {
-          name,
-          email,
-          passwordHash: hashedPassword,
-        },
-      })
+      const registerUseCase = makeRegisterUseCase()
+      const { user } = await registerUseCase.execute({ name, email, password })
 
       const queueName = 'user-service.events'
       const channel = await connectToRabbitMQ(queueName)
       const message: UserEvent = { 
         event: 'user.created',
         data: {
-          id: user.id,
+          id: user.id.toString(),
           name,
           email
         },
