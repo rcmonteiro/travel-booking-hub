@@ -1,33 +1,28 @@
 import amqp from "amqplib";
 
-const queue = "product_inventory";
+export const consumeMessagesMQ = async (
+  channel: amqp.Channel,
+  queueName: string,
+  messageHandler: (msg: string | null) => void
+) => {
+  await channel.assertQueue(queueName, {
+    durable: false,
+  });
 
-(async () => {
-  try {
-    const connection = await amqp.connect("amqp://localhost");
-    const channel = await connection.createChannel();
+  console.log(`Waiting for messages in queue: ${queueName}`);
+  
+  channel.consume(queueName, (msg) => {
+    if (msg !== null) {
+      messageHandler(msg.content.toString());
+      channel.ack(msg);
+    }
+  });
+};
 
-    process.once("SIGINT", async () => {
-      await channel.close();
-      await connection.close();
-    });
-
-    await channel.assertQueue(queue, { durable: false });
-    await channel.consume(
-      queue,
-      (message) => {
-        if (message) {
-          console.log(
-            " [x] Received '%s'",
-            JSON.parse(message.content.toString())
-          );
-        }
-      },
-      { noAck: true }
-    );
-
-    console.log(" [*] Waiting for messages. To exit press CTRL+C");
-  } catch (err) {
-    console.warn(err);
+export const startConsumer = async (channel: amqp.Channel, queueName: string, messageHandler: (msg: string | null) => void) => {
+  try {   
+    await consumeMessagesMQ(channel, queueName, messageHandler);
+  } catch (error) {
+    console.error("Error in consumer:", error);
   }
-})();
+}

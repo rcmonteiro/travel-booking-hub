@@ -14,6 +14,7 @@ import {
 import { authenticate } from './controllers/authenticate'
 import { createAccount } from './controllers/create-account'
 import { getProfile } from './controllers/get-profile'
+import { updateAccount } from './controllers/update-account'
 import { errorHandler } from './error-handler'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
@@ -55,6 +56,7 @@ app.register(fastifyJwt, {
 app.register(fastifyCors)
 
 app.register(createAccount)
+app.register(updateAccount)
 app.register(authenticate)
 app.register(getProfile)
 

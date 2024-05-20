@@ -11,7 +11,7 @@ export const listHotels = async (app: FastifyInstance) => {
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
     .get(
-      '/list',
+      '/',
       {
         schema: {
           tags: ['Hotel'],

@@ -11,8 +11,8 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { authenticate } from './controllers/authenticate'
-import { createAccount } from './controllers/create-account'
+import { messageHandler } from '@/messages/message-handler'
+import { connectToRabbitMQ, startConsumer } from 'message-broker'
 import { listHotels } from './controllers/list-hotels'
 import { errorHandler } from './error-handler'
 
@@ -26,9 +26,9 @@ app.setErrorHandler(errorHandler)
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'User Service - Travel Booking Hub',
+      title: 'Hotel Service - Travel Booking Hub',
       description:
-        'Manages user registration, authentication, and profile data',
+        'Manages Hotel Booking and cancellations',
       version: '1.0.0',
     },
     components: {
@@ -54,11 +54,13 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors)
 
-app.register(createAccount)
-app.register(authenticate)
 app.register(listHotels)
 
-app.listen({ port: env.HOTEL_SERVICE_PORT }).then(() => {
+app.listen({ port: env.HOTEL_SERVICE_PORT }).then(async () => {
+  const queueName = 'user-service.events'
+  const channel = await connectToRabbitMQ(queueName)
+  await startConsumer(channel, queueName, messageHandler)
+
   console.log('')
   console.log('🤘 MS Hotel Service running!')
 })

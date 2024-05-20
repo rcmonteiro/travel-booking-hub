@@ -6,11 +6,11 @@ const app = fastify()
 
 app.register(proxy, {
   upstream: `${env.USER_SERVICE_URL}:${env.USER_SERVICE_PORT}`,
-  prefix: '/user',
+  prefix: '/users',
   rewritePrefix: '/',
   preValidation: async () => {
     console.log('')
-    console.log('Received request for /user/*')
+    console.log('Received request for /users/*')
     console.log(`Sending to "${env.USER_SERVICE_URL}:${env.USER_SERVICE_PORT}"`)
   },
 })
@@ -21,7 +21,7 @@ app.register(proxy, {
   rewritePrefix: '/',
   preValidation: async () => {
     console.log('')
-    console.log('Received request for /hotel/*')
+    console.log('Received request for /hotels/*')
     console.log(`Sending to "${env.HOTEL_SERVICE_URL}:${env.HOTEL_SERVICE_PORT}"`)
   },
 })

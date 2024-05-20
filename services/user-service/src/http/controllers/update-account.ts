@@ -1,4 +1,3 @@
-import { hash } from 'bcryptjs'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
@@ -7,56 +6,56 @@ import { db } from '@/lib/prisma'
 
 import { connectToRabbitMQ, sendMessageMQ } from 'message-broker'
 import type { UserEvent } from 'message-broker/src/events/user-event'
+import { auth } from '../middleware/auth'
 import { BadRequestError } from './_errors/bad-request-error'
 
-export const createAccount = async (app: FastifyInstance) => {
-  app.withTypeProvider<ZodTypeProvider>().post(
-    '/',
+export const updateAccount = async (app: FastifyInstance) => {
+  app.withTypeProvider<ZodTypeProvider>().register(auth).put(
+    '/:id',
     {
       schema: {
         tags: ['Auth'],
-        summary: 'Create a new account',
+        summary: 'Update account',
         body: z.object({
           name: z.string(),
-          email: z.string().email(),
-          password: z.string().min(6),
         }),
+        params: z.object({
+          id: z.string().uuid(),
+        })
       },
     },
     async (request, reply) => {
-      const { name, email, password } = request.body
+      const { name } = request.body
+      const id = request.params.id
 
-      const useWithSameEmailExists = await db.user.findUnique({
-        where: { email },
+      const user = await db.user.findUnique({
+        where: { id },
       })
 
-      if (useWithSameEmailExists) {
-        throw new BadRequestError('User already exists')
+      if (!user) {
+        throw new BadRequestError('User not found')
       }
 
-      const hashedPassword = await hash(password, 6)
-
-      const user = await db.user.create({
+      await db.user.update({
         data: {
           name,
-          email,
-          passwordHash: hashedPassword,
         },
+        where: { id },
       })
 
       const queueName = 'user-service.events'
       const channel = await connectToRabbitMQ(queueName)
       const message: UserEvent = { 
-        event: 'user.created',
+        event: 'user.updated',
         data: {
           id: user.id,
           name,
-          email
+          email: user.email
         },
       }
       await sendMessageMQ(channel,queueName,message)
 
-      return reply.status(201).send()
+      return reply.status(204).send()
     },
   )
 }

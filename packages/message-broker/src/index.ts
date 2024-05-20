@@ -1,5 +1,6 @@
 import amqp from "amqplib";
 import { env } from "env";
+export * from './services/message-receiver';
 export * from './services/message-sender';
 
 export const connectToRabbitMQ = async (queueName: string) => {
