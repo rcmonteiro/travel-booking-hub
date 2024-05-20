@@ -161,11 +161,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       '@prisma/client':
-        specifier: 5.14.0
-        version: 5.14.0(prisma@5.14.0)
-      bcryptjs:
-        specifier: ^2.4.3
-        version: 2.4.3
+        specifier: 5.13.0
+        version: 5.13.0(prisma@5.14.0)
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.2
@@ -181,11 +178,14 @@ importers:
       fastify-type-provider-zod:
         specifier: ^1.1.9
         version: 1.1.9(fastify@4.27.0)(zod@3.23.8)
+      message-broker:
+        specifier: workspace:*
+        version: link:../../packages/message-broker
       prisma:
         specifier: ^5.14.0
         version: 5.14.0
       zod:
-        specifier: ^3.23.6
+        specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
       '@faker-js/faker':
@@ -206,6 +206,9 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(typescript@5.4.5)
       tsx:
         specifier: ^4.9.0
         version: 4.10.3

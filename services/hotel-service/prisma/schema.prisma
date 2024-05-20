@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma-client.js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("HOTEL_SERVICE_DB_URL")
+}
+
+model UserSync {
+  id           String        @id @default(uuid())
+  name         String?
+  email        String        @unique
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  reservations Reservation[]
+
+  @@map("users")
+}
+
+model Hotel {
+  id           String        @id @default(uuid())
+  name         String?
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  reservations Reservation[]
+
+  @@map("hotels")
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  fromDate  DateTime @map("from_date")
+  toDate    DateTime @map("to_date")
+
+  user   UserSync @relation(fields: [userId], references: [id])
+  userId String   @map("user_id")
+
+  hotel   Hotel  @relation(fields: [hotelId], references: [id])
+  hotelId String @map("hotel_id")
+
+  @@map("reservations")
+}

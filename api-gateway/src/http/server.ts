@@ -15,6 +15,17 @@ app.register(proxy, {
   },
 })
 
+app.register(proxy, {
+  upstream: `${env.HOTEL_SERVICE_URL}:${env.HOTEL_SERVICE_PORT}`,
+  prefix: '/hotels',
+  rewritePrefix: '/',
+  preValidation: async () => {
+    console.log('')
+    console.log('Received request for /hotel/*')
+    console.log(`Sending to "${env.HOTEL_SERVICE_URL}:${env.HOTEL_SERVICE_PORT}"`)
+  },
+})
+
 app.listen({ port: env.API_GATEWAY_PORT }).then(() => {
   console.log('')
   console.log('🤘 API Gateway running!')
