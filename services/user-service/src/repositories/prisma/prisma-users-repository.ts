@@ -1,10 +1,10 @@
 import { User } from "@/entities/user";
-import { db } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import type { UsersRepository } from "../users-repository";
 import { UserMapper } from "./mappers/user-mapper";
 
 export class PrismaUsersRepository implements UsersRepository {
-  async create(data: User): Promise<User>{
+  async create(data: User): Promise<User> {
     const user = await db.user.create({
       data: {
         name: data.name,
@@ -14,12 +14,12 @@ export class PrismaUsersRepository implements UsersRepository {
     })
     return data
   }
-  
-  async save(data: User): Promise<User>{
+
+  async save(data: User): Promise<User> {
     throw new Error("Method not implemented.");
   }
 
-  async findByEmail(email: string): Promise<User | null>{
+  async findByEmail(email: string): Promise<User | null> {
     const user = await db.user.findUnique({
       where: {
         email,
@@ -32,7 +32,8 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return await UserMapper.toDomain(user)
   }
-  async findById(userId: string): Promise<User | null>{
+
+  async findById(userId: string): Promise<User | null> {
     const user = await db.user.findUnique({
       where: {
         id: userId,

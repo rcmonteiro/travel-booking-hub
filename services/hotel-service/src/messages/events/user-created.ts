@@ -1,5 +1,5 @@
-import { db } from "@/lib/prisma"
-import type { Prisma } from "prisma/generated/prisma-client.js"
+import { db } from "@/lib/db"
+import type { Prisma } from "@/lib/prisma"
 
 export const createUser = async (data: Prisma.UserSyncUncheckedCreateWithoutReservationsInput) => {
 

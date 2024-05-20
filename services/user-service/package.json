@@ -7,6 +7,7 @@
     "start:dev": "pnpm env:load tsx watch src/infra/server.ts",
     "start:prod": "node build/server.js",
     "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/use-cases",
     "db:migrate": "pnpm env:load prisma migrate dev",
     "db:generate": "pnpm env:load prisma generate",
     "db:studio": "pnpm env:load prisma studio",
@@ -18,13 +19,16 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.12.8",
+    "dotenv": "^16.4.5",
     "eslint-config": "workspace:*",
     "prettier": "workspace:*",
     "tsconfig": "workspace:*",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20.12.8",
     "tsup": "^8.0.2",
-    "tsx": "^4.9.0"
+    "tsx": "^4.9.0",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
@@ -32,13 +36,13 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.13.0",
-    "env": "workspace:*",
-    "message-broker": "workspace:*",
     "bcryptjs": "^2.4.3",
     "dotenv-cli": "^7.4.1",
+    "env": "workspace:*",
     "fastify": "^4.26.2",
     "fastify-plugin": "^4.5.1",
     "fastify-type-provider-zod": "^1.1.9",
+    "message-broker": "workspace:*",
     "prisma": "^5.14.0",
     "zod": "^3.23.8"
   },

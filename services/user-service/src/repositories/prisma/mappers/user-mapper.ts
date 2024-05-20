@@ -1,6 +1,6 @@
 import { User } from '@/entities/user'
 import { Id } from '@/entities/value-objects/id'
-import { Prisma, User as PrismaUser } from '../../../../prisma/generated/prisma-client.js'
+import { Prisma, User as PrismaUser } from '@/lib/prisma'
 
 export abstract class UserMapper {
   public static async toDomain(raw: PrismaUser): Promise<User> {
