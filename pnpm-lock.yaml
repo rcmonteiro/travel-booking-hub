@@ -121,6 +121,9 @@ importers:
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.14.0)
+      core:
+        specifier: workspace:*
+        version: link:../../packages/core
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.2
@@ -252,8 +255,6 @@ importers:
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.12.12)
-
-  services/user-service/prisma/vitest-environment-prisma: {}
 
 packages:
 

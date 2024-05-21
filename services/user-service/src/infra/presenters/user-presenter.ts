@@ -1,11 +1,11 @@
-import type { User } from '@/entities/user'
+import type { User } from 'core'
 
 export abstract class UserPresenter {
   static toHTTP(user: User) {
     return {
       id: user.id.toString(),
       name: user.name,
-      email: user.email.toString()
+      email: user.email.toString(),
     }
   }
 }

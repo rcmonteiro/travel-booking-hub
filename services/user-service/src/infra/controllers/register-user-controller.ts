@@ -1,12 +1,12 @@
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { connectToRabbitMQ, sendMessageMQ } from 'message-broker'
-import type { UserEvent } from 'message-broker/src/events/user-event'
+import { DomainEvents } from 'message-broker'
 import { z } from 'zod'
 
 import { UserAlreadyExistsError } from '@/use-cases/_errors/user-already-exists-error'
 import { makeRegisterUserUseCase } from '@/use-cases/factories/make-register-user-use-case'
 
+import { UserPresenter } from '../presenters/user-presenter'
 import { BadRequestError } from './_errors/bad-request-error'
 
 export const registerUserController = async (app: FastifyInstance) => {
@@ -40,18 +40,7 @@ export const registerUserController = async (app: FastifyInstance) => {
       }
 
       const { user } = result.value
-
-      const queueName = 'user-service.events'
-      const channel = await connectToRabbitMQ(queueName)
-      const message: UserEvent = {
-        event: 'user.created',
-        data: {
-          id: user.id.toString(),
-          name,
-          email,
-        },
-      }
-      await sendMessageMQ(channel, queueName, message)
+      await DomainEvents.publish('user.created', UserPresenter.toHTTP(user))
 
       return reply.status(201).send()
     },

@@ -11,10 +11,9 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { messageHandler } from '@/messages/message-handler'
-import { connectToRabbitMQ, startConsumer } from 'message-broker'
 import { listHotels } from './controllers/list-hotels'
 import { errorHandler } from './error-handler'
+import { subscribe } from './message-broker/subscribe'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -57,9 +56,7 @@ app.register(fastifyCors)
 app.register(listHotels)
 
 app.listen({ port: env.HOTEL_SERVICE_PORT }).then(async () => {
-  const queueName = 'user-service.events'
-  const channel = await connectToRabbitMQ(queueName)
-  await startConsumer(channel, queueName, messageHandler)
+  subscribe().catch(console.error)
 
   console.log('')
   console.log('🤘 MS Hotel Service running!')
