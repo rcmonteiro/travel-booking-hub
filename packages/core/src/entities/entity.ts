@@ -1,4 +1,4 @@
-import { Id } from "./value-objects/id";
+import { Id } from './value-objects/id'
 
 export abstract class Entity<Props> {
   private _id: Id

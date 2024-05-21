@@ -8,6 +8,10 @@
     "start:prod": "node build/server.js",
     "build": "tsup src --out-dir build",
     "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest",
+    "test:e2e": "pnpm env:load vitest run --dir src/infra",
+    "test:e2e:watch": "pnpm env:load vitest --dir src/infra",
+    "pretest:e2e": "cd prisma/vitest-environment-prisma && pnpm link ./ && cd ../.. && pnpm link ./prisma/vitest-environment-prisma",
     "db:migrate": "pnpm env:load prisma migrate dev",
     "db:generate": "pnpm env:load prisma generate",
     "db:studio": "pnpm env:load prisma studio",
@@ -19,11 +23,12 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.8",
+    "@types/supertest": "^6.0.2",
     "dotenv": "^16.4.5",
     "eslint-config": "workspace:*",
     "prettier": "workspace:*",
+    "supertest": "^7.0.0",
     "tsconfig": "workspace:*",
     "tsup": "^8.0.2",
     "tsx": "^4.9.0",
@@ -36,7 +41,7 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.13.0",
-    "bcryptjs": "^2.4.3",
+    "core": "workspace:*",
     "dotenv-cli": "^7.4.1",
     "env": "workspace:*",
     "fastify": "^4.26.2",
@@ -49,8 +54,16 @@
   "prettier": "prettier",
   "eslintConfig": {
     "extends": [
-      "eslint-config/node"
-    ]
+      "@rocketseat/eslint-config/node"
+    ],
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "rules": {
+      "simple-import-sort/imports": "error",
+      "camelcase": "off",
+      "no-useless-constructor": "off"
+    }
   },
   "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
 }

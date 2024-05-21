@@ -3,11 +3,13 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
 import { auth } from '@/infra/middleware/auth'
+import { ResourceNotFoundError } from '@/use-cases/_errors/resource-not-found-error'
+import { makeGetUserProfileUseCase } from '@/use-cases/factories/make-get-user-profile-use-case'
 
-import { makeGetProfileUseCase } from '@/use-cases/factories/make-get-profile-use-case'
 import { UserPresenter } from '../presenters/user-presenter'
+import { BadRequestError } from './_errors/bad-request-error'
 
-export const getProfileController = async (app: FastifyInstance) => {
+export const getUserProfileController = async (app: FastifyInstance) => {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
@@ -31,9 +33,21 @@ export const getProfileController = async (app: FastifyInstance) => {
       },
       async (request, reply) => {
         const userId = await request.getCurrentUserId()
-        
-        const getProfileUseCase = makeGetProfileUseCase()
-        const { user } = await getProfileUseCase.execute({ userId })
+
+        const getProfile = makeGetUserProfileUseCase()
+        const result = await getProfile.execute({ userId })
+
+        if (result.isLeft()) {
+          const error = result.value
+          switch (error.constructor) {
+            case ResourceNotFoundError:
+              throw new BadRequestError(error.message)
+            default:
+              throw new BadRequestError(error.message)
+          }
+        }
+
+        const { user } = result.value
 
         console.log('')
         console.log('Valid user, sending his profile')

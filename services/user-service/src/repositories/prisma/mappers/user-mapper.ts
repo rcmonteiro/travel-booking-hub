@@ -1,5 +1,5 @@
-import { User } from '@/entities/user'
-import { Id } from '@/entities/value-objects/id'
+import { Id, User } from 'core'
+
 import { Prisma, User as PrismaUser } from '@/lib/prisma'
 
 export abstract class UserMapper {
@@ -19,7 +19,7 @@ export abstract class UserMapper {
       id: user.id.toString(),
       name: user.name,
       email: user.email,
-      passwordHash: user.passwordHash,
+      passwordHash: user.passwordHash?.value,
     }
   }
 }

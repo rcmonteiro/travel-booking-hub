@@ -1,18 +1,17 @@
-import config from 'dotenv'
 import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
-import { Environment } from 'vitest'
-import { PrismaClient } from '../../src/lib/prisma'
 
-config.config({
-  path: '../../../../.env',
-})
+import { Environment } from 'vitest'
+
+import { PrismaClient } from '../../src/lib/prisma'
 
 const prisma = new PrismaClient()
 
 const generateDatabaseURL = (schema: string) => {
   if (!process.env.USER_SERVICE_DB_URL) {
-    throw new Error('Please provide a USER_SERVICE_DB_URL environment variable.')
+    throw new Error(
+      'Please provide a USER_SERVICE_DB_URL environment variable.',
+    )
   }
   const url = new URL(process.env.USER_SERVICE_DB_URL)
   url.searchParams.set('schema', schema)

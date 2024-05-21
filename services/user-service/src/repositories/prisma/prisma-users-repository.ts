@@ -1,7 +1,9 @@
-import { User } from "@/entities/user";
-import { db } from "@/lib/db";
-import type { UsersRepository } from "../users-repository";
-import { UserMapper } from "./mappers/user-mapper";
+import type { User } from 'core'
+
+import { db } from '@/lib/db'
+
+import type { UsersRepository } from '../users-repository'
+import { UserMapper } from './mappers/user-mapper'
 
 export class PrismaUsersRepository implements UsersRepository {
   async create(data: User): Promise<User> {
@@ -9,14 +11,22 @@ export class PrismaUsersRepository implements UsersRepository {
       data: {
         name: data.name,
         email: data.email,
-        passwordHash: data.passwordHash,
+        passwordHash: data.passwordHash?.value,
       },
     })
-    return data
+    return await UserMapper.toDomain(user)
   }
 
   async save(data: User): Promise<User> {
-    throw new Error("Method not implemented.");
+    const user = await db.user.update({
+      where: {
+        id: data.id.toString(),
+      },
+      data: {
+        name: data.name,
+      },
+    })
+    return await UserMapper.toDomain(user)
   }
 
   async findByEmail(email: string): Promise<User | null> {
