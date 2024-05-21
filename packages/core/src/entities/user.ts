@@ -15,6 +15,12 @@ export interface NewUser {
   passwordHash?: string | null
 }
 
+export interface UserPublic {
+  id: string
+  name: string
+  email: string
+}
+
 export class User extends Entity<IUser> {
   static async create(props: NewUser, id?: Id) {
     return new User(

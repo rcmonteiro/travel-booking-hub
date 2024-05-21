@@ -1,3 +1,4 @@
+import type { UserPublic } from 'core'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { DomainEvents } from 'message-broker'
@@ -49,7 +50,10 @@ export const updateUserController = async (app: FastifyInstance) => {
         }
 
         const { user } = result.value
-        await DomainEvents.publish('user.updated', UserPresenter.toHTTP(user))
+        await DomainEvents.publish<UserPublic>(
+          'user.updated',
+          UserPresenter.toHTTP(user),
+        )
 
         return reply.status(204).send()
       },
