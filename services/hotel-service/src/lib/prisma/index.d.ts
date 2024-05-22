@@ -2154,7 +2154,7 @@ export namespace Prisma {
 
   export type HotelGroupByOutputType = {
     id: string
-    name: string | null
+    name: string
     createdAt: Date
     updatedAt: Date
     _count: HotelCountAggregateOutputType | null
@@ -2206,7 +2206,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string | null
+      name: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["hotel"]>
@@ -4043,7 +4043,7 @@ export namespace Prisma {
     OR?: HotelWhereInput[]
     NOT?: HotelWhereInput | HotelWhereInput[]
     id?: StringFilter<"Hotel"> | string
-    name?: StringNullableFilter<"Hotel"> | string | null
+    name?: StringFilter<"Hotel"> | string
     createdAt?: DateTimeFilter<"Hotel"> | Date | string
     updatedAt?: DateTimeFilter<"Hotel"> | Date | string
     reservations?: ReservationListRelationFilter
@@ -4051,7 +4051,7 @@ export namespace Prisma {
 
   export type HotelOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     reservations?: ReservationOrderByRelationAggregateInput
@@ -4062,7 +4062,7 @@ export namespace Prisma {
     AND?: HotelWhereInput | HotelWhereInput[]
     OR?: HotelWhereInput[]
     NOT?: HotelWhereInput | HotelWhereInput[]
-    name?: StringNullableFilter<"Hotel"> | string | null
+    name?: StringFilter<"Hotel"> | string
     createdAt?: DateTimeFilter<"Hotel"> | Date | string
     updatedAt?: DateTimeFilter<"Hotel"> | Date | string
     reservations?: ReservationListRelationFilter
@@ -4070,7 +4070,7 @@ export namespace Prisma {
 
   export type HotelOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: HotelCountOrderByAggregateInput
@@ -4083,7 +4083,7 @@ export namespace Prisma {
     OR?: HotelScalarWhereWithAggregatesInput[]
     NOT?: HotelScalarWhereWithAggregatesInput | HotelScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Hotel"> | string
-    name?: StringNullableWithAggregatesFilter<"Hotel"> | string | null
+    name?: StringWithAggregatesFilter<"Hotel"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Hotel"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Hotel"> | Date | string
   }
@@ -4213,7 +4213,7 @@ export namespace Prisma {
 
   export type HotelCreateInput = {
     id?: string
-    name?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationCreateNestedManyWithoutHotelInput
@@ -4221,7 +4221,7 @@ export namespace Prisma {
 
   export type HotelUncheckedCreateInput = {
     id?: string
-    name?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationUncheckedCreateNestedManyWithoutHotelInput
@@ -4229,7 +4229,7 @@ export namespace Prisma {
 
   export type HotelUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationUpdateManyWithoutHotelNestedInput
@@ -4237,7 +4237,7 @@ export namespace Prisma {
 
   export type HotelUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationUncheckedUpdateManyWithoutHotelNestedInput
@@ -4245,21 +4245,21 @@ export namespace Prisma {
 
   export type HotelCreateManyInput = {
     id?: string
-    name?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type HotelUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HotelUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4865,14 +4865,14 @@ export namespace Prisma {
 
   export type HotelCreateWithoutReservationsInput = {
     id?: string
-    name?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type HotelUncheckedCreateWithoutReservationsInput = {
     id?: string
-    name?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4922,14 +4922,14 @@ export namespace Prisma {
 
   export type HotelUpdateWithoutReservationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HotelUncheckedUpdateWithoutReservationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

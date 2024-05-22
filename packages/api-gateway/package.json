@@ -2,9 +2,9 @@
   "name": "@tbh/api-gateway",
   "version": "0.0.1",
   "private": true,
-  "main": "src/http/server.ts",
+  "main": "src/infra/server.ts",
   "scripts": {
-    "start:dev": "pnpm env:load tsx watch src/http/server.ts",
+    "start:dev": "pnpm env:load tsx watch src/infra/server.ts",
     "start:prod": "node build/server.js",
     "build": "tsup src --out-dir build",
     "env:load": "dotenv -e ../.env --"
@@ -14,13 +14,13 @@
     "@tbh/eslint-config": "workspace:*",
     "@tbh/prettier": "workspace:*",
     "@tbh/tsconfig": "workspace:*",
+    "@tbh/env": "workspace:*",
     "tsup": "^8.0.2",
     "tsx": "^4.9.0"
   },
   "dependencies": {
     "@fastify/http-proxy": "^9.5.0",
     "dotenv-cli": "^7.4.1",
-    "@tbh/env": "workspace:*",
     "fastify": "^4.27.0"
   },
   "prettier": "@tbh/prettier",

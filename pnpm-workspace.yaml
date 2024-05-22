@@ -1,4 +1,4 @@
 packages:
-  - "api-gateway/*"
-  - "services/*"
+  - "config/*"
   - "packages/*"
+  - "services/*"

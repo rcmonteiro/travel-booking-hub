@@ -11,11 +11,12 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { listHotels } from './controllers/list-hotels'
+import { fetchHotelsController } from './controllers/fetch-hotels-controller'
 import { errorHandler } from './error-handler'
-import { subscribe } from './message-broker/subscribe'
 
-const app = fastify().withTypeProvider<ZodTypeProvider>()
+export const app = fastify()
+
+app.withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -52,11 +53,4 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors)
 
-app.register(listHotels)
-
-app.listen({ port: env.HOTEL_SERVICE_PORT }).then(async () => {
-  subscribe().catch(console.error)
-
-  console.log('')
-  console.log('🤘 MS Hotel Service running!')
-})
+app.register(fetchHotelsController)
