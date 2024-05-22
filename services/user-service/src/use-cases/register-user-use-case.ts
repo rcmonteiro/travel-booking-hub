@@ -1,4 +1,4 @@
-import { type Either, left, Password, right, User } from 'core'
+import { type Either, left, Password, right, User } from '@tbh/core'
 
 import type { UsersRepository } from '@/repositories/users-repository'
 

@@ -1,4 +1,4 @@
-import { Password } from 'core'
+import { Password } from '@tbh/core'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

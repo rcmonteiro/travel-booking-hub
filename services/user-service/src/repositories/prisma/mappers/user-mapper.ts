@@ -1,4 +1,4 @@
-import { Id, User } from 'core'
+import { Id, User } from '@tbh/core'
 
 import { Prisma, User as PrismaUser } from '@/lib/prisma'
 

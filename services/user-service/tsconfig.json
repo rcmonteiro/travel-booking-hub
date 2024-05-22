@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/node.json",
+  "extends": "@tbh/tsconfig/node.json",
   "include": ["src/**/*", "@types/**/*"],
   "compilerOptions": {
     "baseUrl": ".",

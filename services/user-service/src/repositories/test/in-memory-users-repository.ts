@@ -1,4 +1,4 @@
-import { Id, type User } from 'core'
+import { Id, type User } from '@tbh/core'
 
 import { UsersRepository } from '../users-repository'
 

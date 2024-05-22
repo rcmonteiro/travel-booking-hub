@@ -1,5 +1,5 @@
 {
-  "name": "user-service",
+  "name": "@tbh/user-service",
   "version": "0.0.1",
   "private": true,
   "main": "src/infra/server.ts",
@@ -26,10 +26,10 @@
     "@types/node": "^20.12.8",
     "@types/supertest": "^6.0.2",
     "dotenv": "^16.4.5",
-    "eslint-config": "workspace:*",
-    "prettier": "workspace:*",
+    "@tbh/eslint-config": "workspace:*",
+    "@tbh/prettier": "workspace:*",
     "supertest": "^7.0.0",
-    "tsconfig": "workspace:*",
+    "@tbh/tsconfig": "workspace:*",
     "tsup": "^8.0.2",
     "tsx": "^4.9.0",
     "vite-tsconfig-paths": "^4.3.2",
@@ -41,29 +41,21 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.13.0",
-    "core": "workspace:*",
+    "@tbh/core": "workspace:*",
     "dotenv-cli": "^7.4.1",
-    "env": "workspace:*",
+    "@tbh/env": "workspace:*",
     "fastify": "^4.26.2",
     "fastify-plugin": "^4.5.1",
     "fastify-type-provider-zod": "^1.1.9",
-    "message-broker": "workspace:*",
+    "@tbh/message-broker": "workspace:*",
     "prisma": "^5.14.0",
     "zod": "^3.23.8"
   },
-  "prettier": "prettier",
+  "prettier": "@tbh/prettier",
   "eslintConfig": {
     "extends": [
-      "@rocketseat/eslint-config/node"
-    ],
-    "plugins": [
-      "simple-import-sort"
-    ],
-    "rules": {
-      "simple-import-sort/imports": "error",
-      "camelcase": "off",
-      "no-useless-constructor": "off"
-    }
+      "@tbh/eslint-config/node"
+    ]
   },
   "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
 }

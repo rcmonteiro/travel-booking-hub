@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@tbh/core",
   "version": "0.0.0",
   "private": true,
   "main": "src/index.ts",
@@ -7,14 +7,14 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.6",
-    "eslint-config": "workspace:*",
-    "prettier": "workspace:*",
-    "tsconfig": "workspace:*"
+    "@tbh/eslint-config": "workspace:*",
+    "@tbh/prettier": "workspace:*",
+    "@tbh/tsconfig": "workspace:*"
   },
-  "prettier": "prettier",
+  "prettier": "@tbh/prettier",
   "eslintConfig": {
     "extends": [
-      "eslint-config/library"
+      "@tbh/eslint-config/library"
     ]
   },
   "dependencies": {

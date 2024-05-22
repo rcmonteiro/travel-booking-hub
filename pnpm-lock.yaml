@@ -18,21 +18,21 @@ importers:
         specifier: ^2.4.3
         version: 2.4.3
     devDependencies:
+      '@tbh/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../prettier
+      '@tbh/tsconfig':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
       '@types/node':
         specifier: ^20.12.6
         version: 20.12.12
-      eslint-config:
-        specifier: workspace:*
-        version: link:../eslint-config
-      prettier:
-        specifier: workspace:*
-        version: link:../prettier
-      tsconfig:
-        specifier: workspace:*
-        version: link:../typescript-config
 
   packages/env:
     dependencies:
@@ -43,55 +43,58 @@ importers:
         specifier: ^3.22.4
         version: 3.23.8
     devDependencies:
+      '@tbh/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../prettier
+      '@tbh/tsconfig':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/node':
         specifier: ^20.12.6
         version: 20.12.12
-      eslint-config:
-        specifier: workspace:*
-        version: link:../eslint-config
-      prettier:
-        specifier: workspace:*
-        version: link:../prettier
-      tsconfig:
-        specifier: workspace:*
-        version: link:../typescript-config
 
   packages/eslint-config:
     devDependencies:
       '@rocketseat/eslint-config':
         specifier: ^2.2.2
         version: 2.2.2(eslint@8.57.0)(typescript@5.4.5)
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../prettier
       eslint-plugin-simple-import-sort:
         specifier: ^12.1.0
         version: 12.1.0(eslint@8.57.0)
-      prettier:
-        specifier: workspace:*
-        version: link:../prettier
 
   packages/message-broker:
     dependencies:
+      '@tbh/core':
+        specifier: workspace:*
+        version: link:../core
+      '@tbh/env':
+        specifier: workspace:*
+        version: link:../env
       amqplib:
         specifier: ^0.10.4
         version: 0.10.4
-      env:
-        specifier: workspace:*
-        version: link:../env
     devDependencies:
+      '@tbh/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../prettier
+      '@tbh/tsconfig':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/amqplib':
         specifier: ^0.10.5
         version: 0.10.5
       '@types/node':
         specifier: ^20.12.8
         version: 20.12.12
-      eslint-config:
-        specifier: workspace:*
-        version: link:../eslint-config
-      prettier:
-        specifier: workspace:*
-        version: link:../prettier
-      tsconfig:
-        specifier: workspace:*
-        version: link:../typescript-config
 
   packages/prettier:
     devDependencies:
@@ -121,15 +124,18 @@ importers:
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.14.0)
-      core:
+      '@tbh/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@tbh/env':
+        specifier: workspace:*
+        version: link:../../packages/env
+      '@tbh/message-broker':
+        specifier: workspace:*
+        version: link:../../packages/message-broker
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.2
-      env:
-        specifier: workspace:*
-        version: link:../../packages/env
       fastify:
         specifier: ^4.26.2
         version: 4.27.0
@@ -139,9 +145,6 @@ importers:
       fastify-type-provider-zod:
         specifier: ^1.1.9
         version: 1.1.9(fastify@4.27.0)(zod@3.23.8)
-      message-broker:
-        specifier: workspace:*
-        version: link:../../packages/message-broker
       prisma:
         specifier: ^5.14.0
         version: 5.14.0
@@ -152,21 +155,21 @@ importers:
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
+      '@tbh/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../../packages/prettier
+      '@tbh/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
       '@types/node':
         specifier: ^20.12.8
         version: 20.12.12
-      eslint-config:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      prettier:
-        specifier: workspace:*
-        version: link:../../packages/prettier
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(typescript@5.4.5)
@@ -191,15 +194,18 @@ importers:
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.14.0)
-      core:
+      '@tbh/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@tbh/env':
+        specifier: workspace:*
+        version: link:../../packages/env
+      '@tbh/message-broker':
+        specifier: workspace:*
+        version: link:../../packages/message-broker
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.2
-      env:
-        specifier: workspace:*
-        version: link:../../packages/env
       fastify:
         specifier: ^4.26.2
         version: 4.27.0
@@ -209,9 +215,6 @@ importers:
       fastify-type-provider-zod:
         specifier: ^1.1.9
         version: 1.1.9(fastify@4.27.0)(zod@3.23.8)
-      message-broker:
-        specifier: workspace:*
-        version: link:../../packages/message-broker
       prisma:
         specifier: ^5.14.0
         version: 5.14.0
@@ -222,6 +225,15 @@ importers:
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
+      '@tbh/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@tbh/prettier':
+        specifier: workspace:*
+        version: link:../../packages/prettier
+      '@tbh/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^20.12.8
         version: 20.12.12
@@ -231,18 +243,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
-      eslint-config:
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      prettier:
-        specifier: workspace:*
-        version: link:../../packages/prettier
       supertest:
         specifier: ^7.0.0
         version: 7.0.0
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(typescript@5.4.5)

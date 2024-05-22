@@ -1,16 +1,16 @@
-import { db } from "@/lib/db"
+import type { UserPublic } from '@tbh/core'
 
-export const updateUser = async (user: any) => {
+import { db } from '@/lib/db'
 
+export const updateUser = async (user: UserPublic) => {
   await db.userSync.update({
     data: {
-      name: user.name
+      name: user.name,
     },
     where: {
-      id: user.id
-    }
+      id: user.id,
+    },
   })
-  console.log("User updated on User Model at Hotel Service:")
+  console.log('User updated on User Model at Hotel Service:')
   console.log(user)
-  
 }

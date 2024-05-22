@@ -1,7 +1,6 @@
 import type { FastifyInstance } from 'fastify'
 import fastifyPlugin from 'fastify-plugin'
 
-
 import { UnauthorizedError } from '../controllers/_errors/unauthorized-error'
 
 export const auth = fastifyPlugin(async (app: FastifyInstance) => {
@@ -14,6 +13,5 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
         throw new UnauthorizedError('Invalid auth token')
       }
     }
-
   })
 })

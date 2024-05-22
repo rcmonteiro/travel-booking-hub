@@ -1,4 +1,4 @@
-import type { User, UserPublic } from 'core'
+import type { User, UserPublic } from '@tbh/core'
 
 export abstract class UserPresenter {
   static toHTTP(user: User): UserPublic {

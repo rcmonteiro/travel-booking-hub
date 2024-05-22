@@ -1,4 +1,4 @@
-import { env } from 'env'
+import { env } from '@tbh/env'
 
 import { app } from './app'
 import { subscribe } from './message-broker/subscribe'

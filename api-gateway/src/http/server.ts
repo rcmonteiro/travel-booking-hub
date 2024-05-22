@@ -1,5 +1,5 @@
 import proxy from '@fastify/http-proxy'
-import { env } from 'env'
+import { env } from '@tbh/env'
 import fastify from 'fastify'
 
 const app = fastify()
@@ -22,7 +22,9 @@ app.register(proxy, {
   preValidation: async () => {
     console.log('')
     console.log('Received request for /hotels/*')
-    console.log(`Sending to "${env.HOTEL_SERVICE_URL}:${env.HOTEL_SERVICE_PORT}"`)
+    console.log(
+      `Sending to "${env.HOTEL_SERVICE_URL}:${env.HOTEL_SERVICE_PORT}"`,
+    )
   },
 })
 

@@ -2,7 +2,7 @@ import fastifyCors from '@fastify/cors'
 import fastifyJwt from '@fastify/jwt'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUI from '@fastify/swagger-ui'
-import { env } from 'env'
+import { env } from '@tbh/env'
 import fastify from 'fastify'
 import {
   jsonSchemaTransform,
@@ -26,8 +26,7 @@ app.register(fastifySwagger, {
   openapi: {
     info: {
       title: 'Hotel Service - Travel Booking Hub',
-      description:
-        'Manages Hotel Booking and cancellations',
+      description: 'Manages Hotel Booking and cancellations',
       version: '1.0.0',
     },
     components: {

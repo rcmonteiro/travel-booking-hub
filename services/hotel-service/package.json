@@ -1,5 +1,5 @@
 {
-  "name": "hotel-service",
+  "name": "@tbh/hotel-service",
   "version": "0.0.1",
   "private": true,
   "main": "src/index.ts",
@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "eslint-config": "workspace:*",
-    "prettier": "workspace:*",
-    "tsconfig": "workspace:*",
+    "@tbh/eslint-config": "workspace:*",
+    "@tbh/prettier": "workspace:*",
+    "@tbh/tsconfig": "workspace:*",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.8",
     "tsup": "^8.0.2",
@@ -30,9 +30,9 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.13.0",
-    "env": "workspace:*",
-    "message-broker": "workspace:*",
-    "core": "workspace:*",
+    "@tbh/env": "workspace:*",
+    "@tbh/message-broker": "workspace:*",
+    "@tbh/core": "workspace:*",
     "dotenv-cli": "^7.4.1",
     "fastify": "^4.26.2",
     "fastify-plugin": "^4.5.1",
@@ -40,10 +40,10 @@
     "prisma": "^5.14.0",
     "zod": "^3.23.8"
   },
-  "prettier": "prettier",
+  "prettier": "@tbh/prettier",
   "eslintConfig": {
     "extends": [
-      "eslint-config/node"
+      "@tbh/eslint-config/node"
     ]
   }
 }

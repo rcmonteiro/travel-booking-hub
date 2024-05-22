@@ -1,5 +1,5 @@
 {
-  "name": "api-gateway",
+  "name": "@tbh/api-gateway",
   "version": "0.0.1",
   "private": true,
   "main": "src/http/server.ts",
@@ -11,22 +11,22 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.8",
-    "eslint-config": "workspace:*",
-    "prettier": "workspace:*",
-    "tsconfig": "workspace:*",
+    "@tbh/eslint-config": "workspace:*",
+    "@tbh/prettier": "workspace:*",
+    "@tbh/tsconfig": "workspace:*",
     "tsup": "^8.0.2",
     "tsx": "^4.9.0"
   },
   "dependencies": {
     "@fastify/http-proxy": "^9.5.0",
     "dotenv-cli": "^7.4.1",
-    "env": "workspace:*",
+    "@tbh/env": "workspace:*",
     "fastify": "^4.27.0"
   },
-  "prettier": "prettier",
+  "prettier": "@tbh/prettier",
   "eslintConfig": {
     "extends": [
-      "eslint-config/node"
+      "@tbh/eslint-config/node"
     ]
   }
 }

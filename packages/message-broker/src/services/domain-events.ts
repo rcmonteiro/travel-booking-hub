@@ -1,6 +1,8 @@
+import type { UserPublic } from '@tbh/core'
+
 import { rabbitMQ } from './rabbitmq'
 
-type EventHandler = (data: unknown) => void
+type EventHandler = (data: UserPublic) => void
 
 class DomainEvents {
   private static handlers: Record<string, EventHandler[]> = {}

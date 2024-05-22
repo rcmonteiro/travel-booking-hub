@@ -1,10 +1,12 @@
-import { db } from "@/lib/db"
+import type { UserPublic } from '@tbh/core'
 
-export const createUser = async (user: any) => {
+import { db } from '@/lib/db'
+
+export const createUser = async (user: UserPublic) => {
   const userSameEmail = await db.userSync.findUnique({
     where: {
-      email: user.email
-    }
+      email: user.email,
+    },
   })
 
   if (!userSameEmail) {
@@ -15,8 +17,7 @@ export const createUser = async (user: any) => {
         email: user.email,
       },
     })
-    console.log("User created on User Model at Hotel Service:")
+    console.log('User created on User Model at Hotel Service:')
     console.log(user)
   }
-  
 }

@@ -1,7 +1,7 @@
-import type { UserPublic } from 'core'
+import type { UserPublic } from '@tbh/core'
+import { DomainEvents } from '@tbh/message-broker'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { DomainEvents } from 'message-broker'
 import { z } from 'zod'
 
 import { ResourceNotFoundError } from '@/use-cases/_errors/resource-not-found-error'

@@ -3,8 +3,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
 import { auth } from '@/http/middleware/auth'
-import { db } from '@/lib/prisma'
-
+import { db } from '@/lib/db'
 
 export const listHotels = async (app: FastifyInstance) => {
   app
@@ -19,17 +18,17 @@ export const listHotels = async (app: FastifyInstance) => {
           security: [{ bearerAuth: [] }],
           response: {
             200: z.object({
-              hotels: z.array(z.object({
-                id: z.string().uuid(),
-                name: z.string().nullable(),
-              })),
+              hotels: z.array(
+                z.object({
+                  id: z.string().uuid(),
+                  name: z.string().nullable(),
+                }),
+              ),
             }),
           },
         },
       },
       async (request, reply) => {
-        const userId = await request.getCurrentUserId()
-
         const hotels = await db.hotel.findMany({
           select: {
             id: true,

@@ -1,32 +1,25 @@
 {
-  "name": "message-broker",
+  "name": "@tbh/message-broker",
   "version": "0.0.1",
   "private": true,
-  "prettier": "prettier",
+  "prettier": "@tbh/prettier",
   "eslintConfig": {
     "extends": [
-      "@rocketseat/eslint-config/node"
-    ],
-    "plugins": [
-      "simple-import-sort"
-    ],
-    "rules": {
-      "simple-import-sort/imports": "error",
-      "camelcase": "off",
-      "no-useless-constructor": "off"
-    }
+      "@tbh/eslint-config/node"
+    ]
   },
   "main": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
     "@types/amqplib": "^0.10.5",
     "@types/node": "^20.12.8",
-    "eslint-config": "workspace:*",
-    "prettier": "workspace:*",
-    "tsconfig": "workspace:*"
+    "@tbh/eslint-config": "workspace:*",
+    "@tbh/prettier": "workspace:*",
+    "@tbh/tsconfig": "workspace:*"
   },
   "dependencies": {
     "amqplib": "^0.10.4",
-    "env": "workspace:*"
+    "@tbh/env": "workspace:*",
+    "@tbh/core": "workspace:*"
   }
 }

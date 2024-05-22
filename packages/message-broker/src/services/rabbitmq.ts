@@ -1,5 +1,5 @@
+import { env } from '@tbh/env'
 import amqp, { Channel, Connection, ConsumeMessage } from 'amqplib'
-import { env } from 'env'
 
 class RabbitMQ {
   private connection: Connection | null = null

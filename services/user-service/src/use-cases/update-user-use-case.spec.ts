@@ -1,4 +1,4 @@
-import { Id, Password, User } from 'core'
+import { Id, Password, User } from '@tbh/core'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { InMemoryUsersRepository } from '@/repositories/test/in-memory-users-repository'
